@@ -17,8 +17,8 @@ def greet() -> None:
     """
     print('\nASCII Confirmation Generator Microservice is running.')
     print('Waiting for ASCII request in ascii-confirmation-generator.txt.')
-    print('Request must be a single-line string of text desired for ASCII.')
-    print('Response is the input stylized as ASCII.\n')
+    print('Request is 1-line string of desired confirmation notification.')
+    print('Response is multi-line string of ASCII art containing input.\n')
 
 
 def get_file_text() -> str:
@@ -95,6 +95,7 @@ def run_microservice() -> None:
         file_text = get_file_text()
         last_file_text = process_request(file_text, last_file_text)
         sleep(1)
+
 
 if __name__ == '__main__':
     run_microservice()
