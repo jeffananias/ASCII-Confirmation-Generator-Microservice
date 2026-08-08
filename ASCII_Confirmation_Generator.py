@@ -23,7 +23,8 @@ def greet() -> None:
 
 def get_file_text() -> str:
     """
-    TODO: Write docstring
+    Return text from REQUEST FILE if exists, else create empty file and
+    return empty string.
     """
     try:
         with open(REQUEST_FILE, 'r') as f:
@@ -38,7 +39,8 @@ def get_file_text() -> str:
 
 def validate_request(file_text: str, last_file_text: str) -> bool:
     """
-    TODO: Write docstring
+    Return true if text from REQUEST FILE exists, does not match the last
+    file text, and has only one newline; else, return false.
     """
     newline_count = len(file_text.split('\n'))
     if file_text != '' and file_text != last_file_text and newline_count == 1:
@@ -49,7 +51,8 @@ def validate_request(file_text: str, last_file_text: str) -> bool:
 
 def generate_ascii(file_text: str) -> str:
     """
-    TODO: Write docstring
+    Return string of ASCII art that confirms success of the operation
+    described by the input string.
     """
     ascii = [
         '                  ____                              _',
@@ -67,7 +70,8 @@ def generate_ascii(file_text: str) -> str:
 
 def process_request(file_text: str, last_file_text: str) -> str:
     """
-    TODO: Write docstring
+    Return response based on request or return original file text if the
+    request is invalid.
     """
     if validate_request(file_text, last_file_text) is True:
         print('Request received: ' + file_text)
@@ -82,7 +86,7 @@ def process_request(file_text: str, last_file_text: str) -> str:
 
 def run_microservice() -> None:
     """
-    TODO: Write docstring
+    Start microservice as a continuous process.
     """
     greet()
 
