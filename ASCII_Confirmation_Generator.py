@@ -8,7 +8,7 @@ from random import sample
 from time import sleep
 
 
-REQUEST_FILE = 'ascii-confirmation-generator.txt'
+REQUEST_FILE = 'ascii_confirmation_generator.txt'
 
 
 def greet() -> None:
