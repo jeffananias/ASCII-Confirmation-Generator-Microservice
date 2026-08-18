@@ -55,15 +55,15 @@ def generate_ascii(file_text: str) -> str:
     described by the input string.
     """
     ascii = [
-        "                  ____                              _",
-        "                 / ___| _   _  ___ ___ ___  ___ ___| |",
-        "                 \\___ \\| | | |/ __/ __/ _ \\/ __/ __| |",
-        "                  ___) | |_| | (_| (_|  __/\\__ \\__ \\_|",
-        "                 |____/ \\__,_|\\___\\___\\___||___/___(_)\n",
-        "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n",
+        "            ____                              _",
+        "           / ___| _   _  ___ ___ ___  ___ ___| |",
+        "           \\___ \\| | | |/ __/ __/ _ \\/ __/ __| |",
+        "            ___) | |_| | (_| (_|  __/\\__ \\__ \\_|",
+        "           |____/ \\__,_|\\___\\___\\___||___/___(_)\n",
+        "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n",
         "The following operation completed successfully:\n",
         file_text + "\n",
-        "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n",
+        "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n",
     ]
     return "\n".join(ascii)
 
@@ -71,17 +71,18 @@ def generate_ascii(file_text: str) -> str:
 def process_request(file_text: str, last_file_text: str) -> str:
     """
     Return response based on request or return original file text if
-    the request is invalid.
+    request is invalid.
     """
-    if validate_request(file_text, last_file_text) is True:
-        print("Request received: " + file_text)
-        response = generate_ascii(file_text)
-        with open(REQUEST_FILE, "w") as f:
-            f.write(response)
-        print("Response sent: \n" + response)
-        return response
-    else:
-        return file_text
+    if file_text != "" and file_text != last_file_text:
+        if is_response_message(file_text):
+            return file_text
+        else:
+            print("Request received: " + file_text)
+            response = generate_ascii(file_text)
+            with open(REQUEST_FILE, "w") as f:
+                f.write(response)
+            print("Response sent:\n" + response)
+            return response
 
 
 if __name__ == "__main__":
