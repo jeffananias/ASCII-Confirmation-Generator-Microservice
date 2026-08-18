@@ -41,6 +41,24 @@ def get_file_text() -> str:
     return file_text
 
 
+def process_request(file_text: str, last_file_text: str) -> str:
+    """
+    Return response based on request or return original file text if
+    request is invalid.
+    """
+    if file_text != "" and file_text != last_file_text:
+        if is_response_message(file_text):
+            return file_text
+        else:
+            print("Request received: " + file_text)
+            response = generate_ascii(file_text)
+            with open(REQUEST_FILE, "w") as f:
+                f.write(response)
+            print("Response sent:\n" + response)
+            return response
+    return last_file_text
+
+
 def is_response_message(file_text: str) -> bool:
     """
     Return True if file_text is response instead of request;
@@ -66,24 +84,6 @@ def generate_ascii(file_text: str) -> str:
         "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n",
     ]
     return "\n".join(ascii)
-
-
-def process_request(file_text: str, last_file_text: str) -> str:
-    """
-    Return response based on request or return original file text if
-    request is invalid.
-    """
-    if file_text != "" and file_text != last_file_text:
-        if is_response_message(file_text):
-            return file_text
-        else:
-            print("Request received: " + file_text)
-            response = generate_ascii(file_text)
-            with open(REQUEST_FILE, "w") as f:
-                f.write(response)
-            print("Response sent:\n" + response)
-            return response
-    return last_file_text
 
 
 if __name__ == "__main__":
