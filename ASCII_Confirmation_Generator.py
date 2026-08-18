@@ -83,6 +83,7 @@ def process_request(file_text: str, last_file_text: str) -> str:
                 f.write(response)
             print("Response sent:\n" + response)
             return response
+    return last_file_text
 
 
 if __name__ == "__main__":
