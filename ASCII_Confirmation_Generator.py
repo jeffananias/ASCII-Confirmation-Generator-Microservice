@@ -1,8 +1,7 @@
-# Group: The Abstraction Layer
+# Author: Jeff Ananias
 # Course: CS361
 # Assignment: 9 - Big Pool Implementation
 # Microservice: ASCII Confirmation Generator
-# Due Date: 2026-08-10
 
 import time
 
