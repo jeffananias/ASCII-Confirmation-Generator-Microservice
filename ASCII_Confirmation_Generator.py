@@ -15,7 +15,7 @@ def main() -> None:
     while True:
         file_text = get_file_text()
         last_file_text = process_request(file_text, last_file_text)
-        time.sleep(1)
+        time.sleep(0.5)
 
 
 def greet() -> None:
@@ -41,15 +41,12 @@ def get_file_text() -> str:
     return file_text
 
 
-def validate_request(file_text: str, last_file_text: str) -> bool:
+def is_response_message(file_text: str) -> bool:
     """
-    Return true if text from REQUEST FILE exists, does not match the
-    last file text, and has only one newline; else, return false.
+    Return True if file_text is response instead of request;
+    else return False.
     """
-    is_empty_file = bool(file_text != "")
-    is_same_text = bool(file_text != last_file_text)
-    is_one_line = bool(len(file_text.split("\n")) == 1)
-    return bool(is_empty_file and is_same_text and is_one_line)
+    return bool(len(file_text.split("\n")) > 1)
 
 
 def generate_ascii(file_text: str) -> str:
